@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.5" />
+    <title>AURA | The First Cognitive Asset</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+              mono: ['SF Mono', 'Menlo', 'Monaco', 'Courier New', 'monospace'],
+            },
+            colors: {
+              ios: {
+                bg: '#000000',
+                card: 'rgba(255, 255, 255, 0.03)',
+                accent: '#A855F7',
+                text: '#FFFFFF',
+                subtext: '#86868b'
+              }
+            },
+            backgroundImage: {
+              'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+              'conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+              'ai-gradient': 'conic-gradient(from 180deg at 50% 50%, #FF0080, #7928CA, #FF0080)',
+            },
+            animation: {
+              'pulse-slow': 'pulse 8s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+              'float': 'float 10s ease-in-out infinite',
+              'aurora': 'aurora 15s linear infinite',
+              'breathing': 'breathing 6s ease-in-out infinite alternate',
+              'spin-slow': 'spin 10s linear infinite',
+              'spin-slower': 'spin 20s linear infinite',
+              'fade-in-up': 'fadeInUp 1s ease-out forwards',
+              'fade-in': 'fadeIn 1s ease-out forwards',
+              'shimmer': 'shimmer 2s linear infinite',
+              'marquee': 'marquee 30s linear infinite',
+              'glitch': 'glitch 1s linear infinite',
+              'liquid': 'liquid 8s ease-in-out infinite',
+            },
+            keyframes: {
+              float: {
+                '0%, 100%': { transform: 'translateY(0) scale(1)' },
+                '50%': { transform: 'translateY(-20px) scale(1.01)' },
+              },
+              aurora: {
+                '0%': { backgroundPosition: '0% 50%' },
+                '50%': { backgroundPosition: '100% 50%' },
+                '100%': { backgroundPosition: '0% 50%' },
+              },
+              breathing: {
+                '0%': { opacity: '0.4', transform: 'scale(0.98)' },
+                '100%': { opacity: '0.8', transform: 'scale(1.02)' },
+              },
+              fadeInUp: {
+                '0%': { opacity: '0', transform: 'translateY(40px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' },
+              },
+              fadeIn: {
+                '0%': { opacity: '0' },
+                '100%': { opacity: '1' },
+              },
+              shimmer: {
+                '0%': { backgroundPosition: '-200% 0' },
+                '100%': { backgroundPosition: '200% 0' }
+              },
+              marquee: {
+                '0%': { transform: 'translateX(0)' },
+                '100%': { transform: 'translateX(-50%)' }
+              },
+              glitch: {
+                '2%, 64%': { transform: 'translate(2px,0) skew(0deg)' },
+                '4%, 60%': { transform: 'translate(-2px,0) skew(0deg)' },
+                '62%': { transform: 'translate(0,0) skew(5deg)' }
+              },
+              liquid: {
+                '0%, 100%': { transform: 'scale(1) rotate(0deg)' },
+                '50%': { transform: 'scale(1.1) rotate(180deg)' }
+              }
+            }
+          },
+        },
+      }
+    </script>
+    <style>
+      /* Global Default Style */
+      ::-webkit-scrollbar { display: none; }
+      html {
+        scroll-behavior: smooth;
+        -webkit-text-size-adjust: 100%;
+      }
+      html, body {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+        background-color: #000000;
+        color: #FFFFFF;
+        
+        /* Premium Font Rendering */
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-rendering: optimizeLegibility;
+        
+        overflow-x: hidden;
+        cursor: default;
+
+        /* Disable Selection & Native App Feel */
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        -webkit-touch-callout: none;
+        -webkit-tap-highlight-color: transparent;
+      }
+      
+      /* Re-enable selection for inputs if needed */
+      input, textarea {
+        -webkit-user-select: text;
+        user-select: text;
+      }
+      
+      /* Utility class to force hide scrollbars */
+      .no-scrollbar {
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;  /* Firefox */
+      }
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+
+      /* Subtle Grain */
+      .noise-overlay {
+        position: fixed;
+        top: 0; left: 0; width: 100%; height: 100%;
+        pointer-events: none;
+        z-index: 9999;
+        opacity: 0.012; 
+        background: url('data:image/svg+xml,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)"/%3E%3C/svg%3E');
+        mix-blend-mode: overlay;
+      }
+
+      /* Base Glass */
+      .glass-panel {
+        background: rgba(20, 20, 20, 0.4);
+        backdrop-filter: blur(40px);
+        -webkit-backdrop-filter: blur(40px);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      /* Premium iOS Glass - Thicker */
+      .glass-thick {
+        background: rgba(30, 30, 30, 0.25);
+        backdrop-filter: blur(60px) saturate(180%);
+        -webkit-backdrop-filter: blur(60px) saturate(180%);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        box-shadow: 
+          inset 0 0 20px rgba(255, 255, 255, 0.02),
+          0 10px 40px -10px rgba(0, 0, 0, 0.5);
+      }
+      
+      /* LIQUID GLASS - Apple VisionOS style */
+      .glass-liquid {
+        background: rgba(20, 20, 20, 0.55);
+        backdrop-filter: blur(60px) saturate(200%);
+        -webkit-backdrop-filter: blur(60px) saturate(200%);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        box-shadow: 
+          0 20px 40px rgba(0,0,0,0.6),
+          inset 0 1px 0 rgba(255,255,255,0.25),
+          inset 0 -1px 0 rgba(0,0,0,0.3),
+          inset 0 0 20px rgba(255,255,255,0.02);
+        transition: all 0.7s cubic-bezier(0.19, 1, 0.22, 1);
+      }
+      
+      .glass-liquid:hover {
+        background: rgba(30, 30, 30, 0.65);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 
+          0 30px 60px rgba(0,0,0,0.7),
+          inset 0 1px 0 rgba(255,255,255,0.35),
+          inset 0 -1px 0 rgba(0,0,0,0.3),
+          inset 0 0 30px rgba(255,255,255,0.05);
+      }
+
+      /* CLEAR LIQUID GLASS - High Clarity */
+      .glass-clear-liquid {
+        background: rgba(12, 12, 14, 0.85); 
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        box-shadow: 
+          0 40px 100px rgba(0,0,0,0.8),
+          inset 0 1px 1px rgba(255,255,255,0.3),
+          inset 0 -1px 1px rgba(0,0,0,0.5),
+          inset 0 0 30px rgba(255,255,255,0.03);
+      }
+
+      /* iOS Liquid Glass - No Blur (Requested) */
+      .glass-ios-liquid {
+        background: rgba(20, 20, 20, 0.65);
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        box-shadow: 
+          0 20px 60px -10px rgba(0,0,0,0.7),
+          inset 0 1px 0 rgba(255,255,255,0.4),
+          inset 0 -1px 0 rgba(255,255,255,0.1),
+          inset 0 0 30px rgba(255,255,255,0.05);
+      }
+
+      .text-glow {
+        text-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+      }
+      
+      .gradient-text {
+        background: linear-gradient(135deg, #fff 0%, #d8b4fe 50%, #fff 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        background-size: 200% auto;
+        animation: shimmer 4s linear infinite;
+      }
+
+      .spotlight-card:hover::before {
+        opacity: 1;
+      }
+      .spotlight-card::before {
+        content: "";
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        border-radius: inherit;
+        padding: 1px;
+        background: radial-gradient(800px circle at var(--mouse-x) var(--mouse-y), rgba(255,255,255,0.4), transparent 40%);
+        opacity: 0;
+        transition: opacity 0.5s;
+        pointer-events: none;
+        mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        z-index: 10;
+      }
+
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.32.0",
+    "react": "https://aistudiocdn.com/react@^19.2.1",
+    "react/": "https://aistudiocdn.com/react@^19.2.1/",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.1/",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.556.0",
+    "recharts": "https://aistudiocdn.com/recharts@^3.5.1"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body>
+    <div class="noise-overlay"></div>
+    <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
